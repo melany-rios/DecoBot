@@ -1,18 +1,15 @@
-# ---- LangChain (stack estable) ----
-langchain==0.1.20
-langchain-core==0.1.53
-langchain-community==0.0.36
-langchain-huggingface==0.0.7
-
-# ---- Modelos HuggingFace ----
-transformers==4.39.3
-huggingface-hub==0.22.2
-accelerate==0.28.0
+langchain==0.3.7
+langchain-core==0.3.17
+langchain-community==0.3.7
+langchain-huggingface==0.1.2
+transformers==4.44.2
 sentencepiece
-
-# ---- Utilidades ----
+accelerate
+datasets
+huggingface-hub
+python-dotenv
+faiss-cpu
+tiktoken
+streamlit
 numpy
 pandas
-
-# ---- Streamlit ----
-streamlit==1.32.0
