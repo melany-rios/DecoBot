@@ -1,15 +1,17 @@
-langchain==0.3.7
-langchain-core==0.3.17
-langchain-community==0.3.7
-langchain-huggingface==0.1.2
-transformers==4.44.2
-sentencepiece
-accelerate
-datasets
-huggingface-hub
+# --- Streamlit ---
+streamlit==1.40.1
+
+# --- HuggingFace (sin transformers ni tokenizers) ---
+huggingface-hub==0.23.4
+
+# --- LangChain Estable y Compatible ---
+langchain==0.1.20
+langchain-core==0.1.52
+langchain-community==0.0.28
+langchain-huggingface==0.0.6
+
+# --- Dependencias básicas ---
+pydantic==1.10.13
 python-dotenv
-faiss-cpu
-tiktoken
-streamlit
-numpy
-pandas
+numpy==1.26.4
+pandas==2.2.2
