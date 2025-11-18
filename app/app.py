@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import re
 
-# LangChain
+# LangChain - imports
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
@@ -54,6 +54,17 @@ if not HF_TOKEN:
     st.stop()
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = HF_TOKEN
+
+try:
+    llm = HuggingFaceHub(
+        repo_id="tiiuae/falcon-7b-instruct",
+        model_kwargs={"temperature": 0.6, "max_new_tokens": 200},
+    )
+    memory = ConversationBufferMemory()
+    chat = ConversationChain(llm=llm, memory=memory)
+except Exception as e:
+    st.error(f"Error inicializando el modelo: {e}")
+    st.stop()
 
 # -------------------------------------------------------------
 # 📦 CATÁLOGO
