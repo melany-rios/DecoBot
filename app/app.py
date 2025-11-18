@@ -33,20 +33,27 @@ st.markdown("""
 
 
 # -------------------------------------------------------------
-# 🔧 CONFIG LLM
+# 🔧 CONFIG LLM - MANEJO SEGURO DE TOKENS
 # -------------------------------------------------------------
-HF_TOKEN = "TU_TOKEN_HF_AQUI"  # Reemplazar
+# Intenta obtener el token de los secrets de Streamlit Cloud, luego de variables de entorno
+HF_TOKEN = st.secrets.get("HUGGINGFACEHUB_API_TOKEN", os.getenv("HUGGINGFACEHUB_API_TOKEN"))
+
+if not HF_TOKEN:
+    st.error("""
+    ⚠️ Token de HuggingFace no configurado.
+    
+    **Para desarrollo local:**
+    - Crea un archivo `.streamlit/secrets.toml` con:
+    ```toml
+    HUGGINGFACEHUB_API_TOKEN = "tu_token_aqui"
+    ```
+    
+    **Para producción:**
+    - Configura el secret en Streamlit Cloud
+    """)
+    st.stop()
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = HF_TOKEN
-
-llm = HuggingFaceHub(
-    repo_id="tiiuae/falcon-7b-instruct",
-    model_kwargs={"temperature": 0.6, "max_new_tokens": 200},
-)
-
-memory = ConversationBufferMemory()
-chat = ConversationChain(llm=llm, memory=memory)
-
 
 # -------------------------------------------------------------
 # 📦 CATÁLOGO
